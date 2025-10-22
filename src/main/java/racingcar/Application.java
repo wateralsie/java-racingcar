@@ -1,6 +1,7 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -18,7 +19,15 @@ public class Application {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("시도할 횟수는 숫자 형태로 입력해주세요.");
         }
-        Set<Car> cars = app.addCarsToRace(app.parse(carNames));
+        System.out.println("\n실행 결과");
+        for (int i = 0; i < tries; i++) {
+            for (Car car : cars) {
+                System.out.print(car.getName() + " : ");
+                int num = Randoms.pickNumberInRange(0, 9);
+                System.out.println("-".repeat(num));
+            }
+            System.out.println();
+        }
     }
 
     public String[] parse(String names) {
