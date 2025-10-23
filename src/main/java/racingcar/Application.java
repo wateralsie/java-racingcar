@@ -17,6 +17,9 @@ public class Application {
         int tries;
         try {
             tries = Integer.parseInt(Console.readLine());
+            if (tries <= 0) {
+                throw new IllegalArgumentException("시도할 횟수는 양수로 입력해주세요.");
+            }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("시도할 횟수는 숫자 형태로 입력해주세요.");
         }
