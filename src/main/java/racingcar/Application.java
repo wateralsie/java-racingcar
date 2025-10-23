@@ -43,15 +43,24 @@ public class Application {
                 .toList();
     }
 
-    public String[] parse(String names) {
-        String[] namesList = names.split(",");
-        if (namesList.length < 2) {
+    public Set<String> parse(String namesStr) {
+        String[] names = namesStr.split(",");
+        if (names.length < 2) {
             throw new IllegalArgumentException("자동차 이름은 두 개 이상 쉼표로 구분하여 입력해주세요.");
         }
-        return namesList;
+        Set<String> uniqueNames = new LinkedHashSet<>();
+        for (String name : names) {
+            if (name.length() > 6) {
+                throw new IllegalArgumentException("자동차 이름은 5자 이하로만 가능합니다.");
+            }
+            if (!uniqueNames.add(name)) {
+                throw new IllegalArgumentException("자동차 이름은 중복되지 않게 입력해주세요.");
+            }
+        }
+        return uniqueNames;
     }
 
-    public Set<Car> addCarsToRace(String[] names) {
+    public Set<Car> addCarsToRace(Set<String> names) {
         Set<Car> cars = new LinkedHashSet<>();
         for (String name : names) {
             cars.add(new Car(name));
