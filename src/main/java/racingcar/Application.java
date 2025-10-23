@@ -3,6 +3,7 @@ package racingcar;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Application {
@@ -31,6 +32,15 @@ public class Application {
             }
             System.out.println();
         }
+        System.out.println("최종 우승자 : " + String.join(", ", app.getWinnerNames(cars)));
+    }
+
+    public List<String> getWinnerNames(Set<Car> cars) {
+        int maxDistance = cars.stream().mapToInt(Car::getDistance).max().orElse(0);
+        return cars.stream()
+                .filter(car -> car.getDistance() == maxDistance)
+                .map(Car::getName)
+                .toList();
     }
 
     public String[] parse(String names) {
