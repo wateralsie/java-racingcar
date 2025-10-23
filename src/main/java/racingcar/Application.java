@@ -25,10 +25,10 @@ public class Application {
             for (Car car : cars) {
                 System.out.print(car.getName() + " : ");
                 int num = Randoms.pickNumberInRange(0, 9);
-                System.out.println("-".repeat(num));
                 if (num >= 4) {
                     car.goForward();
                 }
+                System.out.println("-".repeat(car.getDistance()));
             }
             System.out.println();
         }
