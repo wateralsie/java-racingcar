@@ -5,23 +5,25 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import racingcar.constants.CarRaceMessage;
+import racingcar.constants.ErrorMessage;
 
 public class Application {
     public static void main(String[] args) {
         Application app = new Application();
 
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        System.out.println(CarRaceMessage.CAR_NAMES_ENTER_PROMPT);
         String carNames = Console.readLine();
         Set<Car> cars = app.addCarsToRace(app.parse(carNames));
-        System.out.println("시도할 횟수는 몇 회인가요?");
+        System.out.println(CarRaceMessage.TRY_NUMBER_ENTER_PROMPT);
         int tries;
         try {
             tries = Integer.parseInt(Console.readLine());
             if (tries <= 0) {
-                throw new IllegalArgumentException("시도할 횟수는 양수로 입력해주세요.");
+                throw new IllegalArgumentException(ErrorMessage.TRY_NUMBER_NOT_POSITIVE);
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("시도할 횟수는 숫자 형태로 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.TRY_NUMBER_NOT_NUMBER);
         }
         System.out.println("\n실행 결과");
         for (int i = 0; i < tries; i++) {
@@ -49,15 +51,15 @@ public class Application {
     public Set<String> parse(String namesStr) {
         String[] names = namesStr.split(",");
         if (names.length < 2) {
-            throw new IllegalArgumentException("자동차 이름은 두 개 이상 쉼표로 구분하여 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAMES);
         }
         Set<String> uniqueNames = new LinkedHashSet<>();
         for (String name : names) {
             if (name.length() > 6) {
-                throw new IllegalArgumentException("자동차 이름은 5자 이하로만 가능합니다.");
+                throw new IllegalArgumentException(ErrorMessage.CAR_NAME_LENGTH_OVER_FIVE);
             }
             if (!uniqueNames.add(name)) {
-                throw new IllegalArgumentException("자동차 이름은 중복되지 않게 입력해주세요.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_CAR_NAMES);
             }
         }
         return uniqueNames;
