@@ -20,11 +20,17 @@ public class Car {
         return distance;
     }
 
-    public int getRandomValue() {
+    public void tryToMove() {
+        if (getRandomValue() >= 4) {
+            goForward();
+        }
+    }
+
+    private int getRandomValue() {
         return Randoms.pickNumberInRange(0, 9);
     }
 
-    public void goForward() {
+    private void goForward() {
         distance += 1;
     }
 
