@@ -36,8 +36,15 @@ public class Car {
     }
 
     private String validate(String name) {
+        validateIsBlank(name);
         validateNameLength(name);
         return name;
+    }
+
+    private void validateIsBlank(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_IS_BLANK);
+        }
     }
 
     private void validateNameLength(String name) {

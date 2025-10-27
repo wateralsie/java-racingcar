@@ -34,6 +34,9 @@ public class Round {
     }
 
     private static void validateIsNumber(String numberStr) {
+        if (numberStr.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.TRY_NUMBER_NOT_NUMBER);
+        }
         if (!numberStr.matches(CarRaceConstant.ONLY_NUMBER_REGEX)) {
             throw new IllegalArgumentException(ErrorMessage.TRY_NUMBER_NOT_NUMBER);
         }
