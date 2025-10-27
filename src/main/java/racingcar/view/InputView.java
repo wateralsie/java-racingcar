@@ -3,6 +3,7 @@ package racingcar.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import racingcar.constants.CarRaceConstant;
 import racingcar.constants.CarRaceMessage;
 
 public class InputView {
@@ -17,6 +18,6 @@ public class InputView {
     }
 
     private static List<String> parseAndMakeList(String str) {
-        return Arrays.asList(str.split(","));
+        return Arrays.asList(str.split(CarRaceConstant.CAR_NAME_SEPARATOR));
     }
 }

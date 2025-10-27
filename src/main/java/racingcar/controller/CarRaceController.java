@@ -12,6 +12,7 @@ public class CarRaceController {
 
         CarRaceService carRaceService = new CarRaceService(triesStr, carNames);
         List<String> progress = carRaceService.startAndGetProgress();
+
         OutputView.printRoundResults(progress);
         OutputView.printWinners(carRaceService.getWinnerNames());
     }

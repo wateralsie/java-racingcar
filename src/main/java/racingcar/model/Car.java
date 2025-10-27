@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.constants.CarRaceConstant;
 import racingcar.constants.ErrorMessage;
 
 public class Car {
@@ -21,17 +22,17 @@ public class Car {
     }
 
     public void tryToMove() {
-        if (getRandomValue() >= 4) {
+        if (getRandomValue() >= CarRaceConstant.PIVOT_SPEED) {
             goForward();
         }
     }
 
     private int getRandomValue() {
-        return Randoms.pickNumberInRange(0, 9);
+        return Randoms.pickNumberInRange(CarRaceConstant.MIN_SPEED, CarRaceConstant.MAX_SPEED);
     }
 
     private void goForward() {
-        distance += 1;
+        distance++;
     }
 
     private String validate(String name) {
@@ -40,7 +41,7 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > 6) {
+        if (name.length() > CarRaceConstant.MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.CAR_NAME_LENGTH_OVER_FIVE);
         }
     }

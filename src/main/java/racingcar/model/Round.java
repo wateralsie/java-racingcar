@@ -2,6 +2,7 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.constants.CarRaceConstant;
 import racingcar.constants.ErrorMessage;
 
 public class Round {
@@ -33,7 +34,7 @@ public class Round {
     }
 
     private static void validateIsNumber(String numberStr) {
-        if (!numberStr.matches("\\d+")) {
+        if (!numberStr.matches(CarRaceConstant.ONLY_NUMBER_REGEX)) {
             throw new IllegalArgumentException(ErrorMessage.TRY_NUMBER_NOT_NUMBER);
         }
     }
