@@ -23,8 +23,8 @@ public class Round {
         return new ArrayList<>(logs);
     }
 
-    public void saveStatusToLogs(List<Car> cars) {
-        String log = RoundLogTracker.formatCarsStatus(cars);
+    public void saveStatusToLog(List<Car> cars) {
+        String log = RoundLogWriter.formatCarsStatus(cars);
         logs.add(log);
     }
 

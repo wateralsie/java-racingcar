@@ -8,9 +8,9 @@ import racingcar.view.OutputView;
 public class CarRaceController {
     public static void run() {
         List<String> carNames = InputView.readCarNames();
-        String triesStr = InputView.readTryNumber();
+        String tryNumberStr = InputView.readTryNumber();
 
-        CarRaceService carRaceService = new CarRaceService(triesStr, carNames);
+        CarRaceService carRaceService = new CarRaceService(tryNumberStr, carNames);
         List<String> progress = carRaceService.startAndGetProgress();
 
         OutputView.printRoundResults(progress);

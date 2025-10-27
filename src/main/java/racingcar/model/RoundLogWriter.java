@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.constants.CarRaceMessage;
 
-public class RoundLogTracker {
+public class RoundLogWriter {
     public static String formatCarsStatus(List<Car> cars) {
         return cars.stream()
-                .map(RoundLogTracker::formatCarStatus)
+                .map(RoundLogWriter::formatCarStatus)
                 .collect(Collectors.joining("\n"));
     }
 

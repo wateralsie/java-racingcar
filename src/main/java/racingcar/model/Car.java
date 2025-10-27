@@ -22,12 +22,12 @@ public class Car {
     }
 
     public void tryToMove() {
-        if (getRandomValue() >= CarRaceConstant.PIVOT_SPEED) {
+        if (getSpeedValue() >= CarRaceConstant.PIVOT_SPEED) {
             goForward();
         }
     }
 
-    private int getRandomValue() {
+    private int getSpeedValue() {
         return Randoms.pickNumberInRange(CarRaceConstant.MIN_SPEED, CarRaceConstant.MAX_SPEED);
     }
 
@@ -36,12 +36,12 @@ public class Car {
     }
 
     private String validate(String name) {
-        validateIsBlank(name);
+        validateNameIsBlank(name);
         validateNameLength(name);
         return name;
     }
 
-    private void validateIsBlank(String name) {
+    private void validateNameIsBlank(String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.CAR_NAME_IS_BLANK);
         }

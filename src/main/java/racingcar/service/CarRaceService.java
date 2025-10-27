@@ -9,9 +9,9 @@ public class CarRaceService {
     private final Cars cars;
     private final Round round;
 
-    public CarRaceService(String triesStr, List<String> carNames) {
+    public CarRaceService(String tryNumberStr, List<String> carNames) {
         this.cars = Cars.from(carNames);
-        this.round = new Round(triesStr);
+        this.round = new Round(tryNumberStr);
     }
 
     public List<String> startAndGetProgress() {
@@ -19,7 +19,7 @@ public class CarRaceService {
             for (Car car : cars.getAll()) {
                 car.tryToMove();
             }
-            round.saveStatusToLogs(cars.getAll());
+            round.saveStatusToLog(cars.getAll());
         }
         return round.getLogs();
     }
