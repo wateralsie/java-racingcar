@@ -22,6 +22,14 @@ public class Cars {
         return new Cars(carList);
     }
 
+    public List<String> getMaxDistanceNames() {
+        int maxDistance = cars.stream().mapToInt(Car::getDistance).max().orElse(0);
+        return cars.stream()
+                .filter(car -> car.getDistance() == maxDistance)
+                .map(Car::getName)
+                .toList();
+    }
+
     private static void validate(List<String> names) {
         validateMinimumCars(names);
         validateDuplicateNames(names);

@@ -16,17 +16,13 @@ public class CarRaceService {
 
     public void start() {
         for (int i = 0; i < tries.getNumber(); i++) {
-            for (Car car: cars.getAll()) {
+            for (Car car : cars.getAll()) {
                 car.tryToMove();
             }
         }
     }
 
     public List<String> getWinnerNames() {
-        int maxDistance = cars.getAll().stream().mapToInt(Car::getDistance).max().orElse(0);
-        return cars.getAll().stream()
-                .filter(car -> car.getDistance() == maxDistance)
-                .map(Car::getName)
-                .toList();
+        return cars.getMaxDistanceNames();
     }
 }
