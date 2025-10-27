@@ -9,8 +9,10 @@ public class CarRaceController {
     public static void run() {
         List<String> carNames = InputView.readCarNames();
         String triesStr = InputView.readTryNumber();
+
         CarRaceService carRaceService = new CarRaceService(triesStr, carNames);
-        carRaceService.start();
+        List<String> progress = carRaceService.startAndGetProgress();
+        OutputView.printRoundResults(progress);
         OutputView.printWinners(carRaceService.getWinnerNames());
     }
 }

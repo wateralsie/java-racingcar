@@ -3,23 +3,25 @@ package racingcar.service;
 import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.Cars;
-import racingcar.model.Try;
+import racingcar.model.Round;
 
 public class CarRaceService {
     private final Cars cars;
-    private final Try tries;
+    private final Round round;
 
     public CarRaceService(String triesStr, List<String> carNames) {
         this.cars = Cars.from(carNames);
-        this.tries = new Try(triesStr);
+        this.round = new Round(triesStr);
     }
 
-    public void start() {
-        for (int i = 0; i < tries.getNumber(); i++) {
+    public List<String> startAndGetProgress() {
+        for (int i = 0; i < round.getTotalNumber(); i++) {
             for (Car car : cars.getAll()) {
                 car.tryToMove();
             }
+            round.saveStatusToLogs(cars.getAll());
         }
+        return round.getLogs();
     }
 
     public List<String> getWinnerNames() {
